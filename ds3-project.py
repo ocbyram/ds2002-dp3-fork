@@ -38,7 +38,11 @@ def get_message():
                 print(f"Word: {word}")
                 Dict[f'{order}'] = f'{word}'
                 print(Dict)
-
+                myKeys = list(Dict.keys())
+                myKeys.sort()
+                sorted_dict = {i: Dict[i] for i in myKeys}
+ 
+                print(sorted_dict)
         # If there is no message in the queue, print a message and exit    
             else:
                 print("No message in the queue")
@@ -51,5 +55,3 @@ def get_message():
 # Trigger the function
 if __name__ == "__main__":
     get_message()
-
-
