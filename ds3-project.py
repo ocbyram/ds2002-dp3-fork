@@ -32,10 +32,7 @@ def get_message():
                 handle = response['Messages'][0]['ReceiptHandle']
 
             # Print the message attributes - this is what you want to work with to reassemble the message
-                print(f"Order: {order}")
-                print(f"Word: {word}")
                 Dict[f'{order}'] = f'{word}'
-                print(Dict)
                 myKeys = list(Dict.keys())
                 myKeys.sort()
                 sorted_dict = {i: Dict[i] for i in myKeys}
