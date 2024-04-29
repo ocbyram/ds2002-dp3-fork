@@ -10,8 +10,6 @@ Dict = {}
 
 
 def get_message():
-    i = 0
-    while i < 10:
         try:
         # Receive message from SQS queue. Each message has two MessageAttributes: order and word
         # You want to extract these two attributes to reassemble the message
@@ -20,7 +18,7 @@ def get_message():
                 AttributeNames=[
                     'All'
                 ],
-                MaxNumberOfMessages=10,
+                MaxNumberOfMessages=1,
                 MessageAttributeNames=[
                     'All'
                 ]
@@ -51,7 +49,8 @@ def get_message():
     # Handle any errors that may occur connecting to SQS
         except ClientError as e:
             print(e.response['Error']['Message'])
-        i += 1
+        
 # Trigger the function
 if __name__ == "__main__":
-    get_message()
+    while True:
+        get_message()
