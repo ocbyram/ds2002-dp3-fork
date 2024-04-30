@@ -48,8 +48,22 @@ def get_message():
     # Handle any errors that may occur connecting to SQS
         except ClientError as e:
             print(e.response['Error']['Message'])
-        
+    # This part deletes the message after it is put in the dictionary
+        try:
+            # Delete message from SQS queue
+            sqs.delete_message(
+                QueueUrl=url,
+                ReceiptHandle=handle
+            )
+            print("Message deleted")
+        except ClientError as e:
+            print(e.response['Error']['Message'])
+
+
 # Trigger the function. Adding in the while True allows it to run until the queue is empty
 if __name__ == "__main__":
     while True:
         get_message()
+
+
+
