@@ -6,6 +6,7 @@ import json
 # Set up your SQS queue URL and boto3 client
 url = "https://sqs.us-east-1.amazonaws.com/440848399208/ocb3wv"
 sqs = boto3.client('sqs')
+# Defined a dictionary
 Dict = {}
 
 
@@ -21,7 +22,7 @@ def get_message():
                 MaxNumberOfMessages=1,
                 MessageAttributeNames=[
                     'All'
-                ]
+                ],
             )
         # Check if there is a message in the queue or not
             if "Messages" in response:
@@ -32,12 +33,13 @@ def get_message():
                 handle = response['Messages'][0]['ReceiptHandle']
 
             # Print the message attributes - this is what you want to work with to reassemble the message
+            # Put the attributes into a dicionary and sorted it
                 Dict[f'{order}'] = f'{word}'
-                myKeys = list(Dict.keys())
-                myKeys.sort()
-                sorted_dict = {i: Dict[i] for i in myKeys}
+                sortDict = list(Dict.keys())
+                sortDict.sort()
+                final_dict = {i: Dict[i] for i in sortDict}
  
-                print(sorted_dict)
+                print(final_dict)
         # If there is no message in the queue, print a message and exit    
             else:
                 print("No message in the queue")
@@ -47,7 +49,7 @@ def get_message():
         except ClientError as e:
             print(e.response['Error']['Message'])
         
-# Trigger the function
+# Trigger the function. Adding in the while True allows it to run until the queue is empty
 if __name__ == "__main__":
     while True:
         get_message()

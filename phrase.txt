@@ -1,7 +1,9 @@
-# I worked with a partner on this project. Her/his name is:
+# I did not work with a partner on this project.
 
 
 # Put your reassembled phrase here:
 
-People who know what they're talking about don't need Powerpoint.
+{'0': 'People', '1': 'who', '2': 'know', '3': 'what', '4': "they're", '5': 'talking', '6': 'about', '7': "don't", '8': 'need', '9': 'PowerPoint.'}
+
+People who know what they're talking about don't need PowerPoint.
 
